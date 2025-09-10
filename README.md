@@ -7,7 +7,7 @@ Production-ready starter powered by Bun and Elysia with Swagger docs, structured
 - Bun runtime with fast dev reload (`bun --hot`)
 - Elysia web framework
 - OpenAPI/Swagger via `@elysiajs/swagger`
-- Structured logging via `@bogeychan/elyssia-logger` + `pino-pretty`
+- Structured logging via `@bogeychan/elysia-logger` + `pino-pretty`
 - Biome formatter/linter and Ultracite defaults
 - Type-safe env configuration scaffold with Zod
 
@@ -70,7 +70,7 @@ bun run dev
 
 ## Logging
 
-Logging is enabled via `@bogeychan/elyssia-logger` with `pino-pretty` transport for colorized, human-friendly output. See `plugins/logger.ts` for options.
+Logging is enabled via `@bogeychan/elysia-logger` with `pino-pretty` transport for colorized, human-friendly output. See `plugins/logger.ts` for options.
 
 ## API Docs
 
