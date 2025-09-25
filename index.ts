@@ -1,4 +1,4 @@
-import { swagger } from '@elysiajs/swagger';
+import { fromTypes, openapi } from '@elysiajs/openapi';
 import { Elysia } from 'elysia';
 import { example } from './modules/example';
 import { logger } from './plugins/logger';
@@ -7,7 +7,8 @@ const app = new Elysia()
   .use(logger)
   .use(example)
   .use(
-    swagger({
+    openapi({
+      references: fromTypes(),
       documentation: {
         info: {
           title: 'Template API',

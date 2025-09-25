@@ -1,12 +1,12 @@
 # Bun + Elysia Template API
 
-Production-ready starter powered by Bun and Elysia with Swagger docs, structured logging, and Biome code quality.
+Production-ready starter powered by Bun and Elysia with Openapi docs (Scalar), structured logging, and Biome code quality.
 
 ## Features
 
 - Bun runtime with fast dev reload (`bun --hot`)
 - Elysia web framework
-- OpenAPI/Swagger via `@elysiajs/swagger`
+- OpenAPI via `@elysiajs/openapi`
 - Structured logging via `@bogeychan/elysia-logger` + `pino-pretty`
 - Biome formatter/linter and Ultracite defaults
 - Type-safe env configuration scaffold with Zod
@@ -23,8 +23,8 @@ bun --hot ./index.ts
 ```
 
 - Server listens on: `http://localhost:5117`
-- Swagger UI: `http://localhost:5117/swagger`
-- OpenAPI JSON: `http://localhost:5117/swagger/json`
+- Scalar UI: `http://localhost:5117/openapi`
+- OpenAPI JSON: `http://localhost:5117/openapi/json`
 
 > Tip: Use `--hot` for autoreload during development.
 
@@ -32,7 +32,7 @@ bun --hot ./index.ts
 
 ```text
 / (repo root)
-├─ index.ts                 # Elysia app bootstrap (port 5117, Swagger)
+├─ index.ts                 # Elysia app bootstrap (port 5117, OpenAPI)
 ├─ config/
 │  └─ env.ts               # Zod-validated env schema (extend as needed)
 ├─ modules/
@@ -74,12 +74,12 @@ Logging is enabled via `@bogeychan/elysia-logger` with `pino-pretty` transport f
 
 ## API Docs
 
-Swagger is enabled via `@elysiajs/swagger` with a basic `info` document. By default this exposes:
+OpenAPI is enabled via `@elysiajs/openapi` with a basic `info` document. By default this exposes:
 
-- UI: `GET /swagger`
-- Spec: `GET /swagger/json`
+- UI: `GET /openapi`
+- Spec: `GET /openapi/json`
 
-Adjust options in `index.ts` under the `.use(swagger(...))` call.
+Adjust options in `index.ts` under the `.use(openapi(...))` call.
 
 ## Environment Variables
 
