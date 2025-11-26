@@ -1,30 +1,25 @@
-import { t } from 'elysia';
+import { Elysia, t } from 'elysia';
 
-/**
- * Example validation schemas using Elysia's `t` helper.
- *
- * Define request/response shapes with `t.*` builders to get:
- * - Runtime validation for incoming data
- * - Static TypeScript types via `typeof schema.static`
- *
- * Per best practices: use `t` schemas (DTOs) as the single source
- * of truth for both runtime validation and static typing via `.static`.
- */
+export const ExampleModelKeys = {
+  echoBody: 'example.echo.body',
+  echoResponse: 'example.echo.response',
+  pingResponse: 'example.ping.response',
+} as const;
 
-// Request body for POST /post
-export const exampleEchoBody = t.Object({
+const exampleEchoBodySchema = t.Object({
   message: t.String({ minLength: 1 }),
 });
-export type ExampleEchoBody = typeof exampleEchoBody.static;
 
-// Response for POST /post
-export const exampleEchoResponse = t.Object({
+const exampleEchoResponseSchema = t.Object({
   echoed: t.String(),
 });
-export type ExampleEchoResponse = typeof exampleEchoResponse.static;
 
-// Response for GET /get
-export const examplePingResponse = t.Object({
+const examplePingResponseSchema = t.Object({
   ok: t.Boolean(),
 });
-export type ExamplePingResponse = typeof examplePingResponse.static;
+
+export const exampleModel = new Elysia({ name: 'Example.Model' }).model({
+  [ExampleModelKeys.echoBody]: exampleEchoBodySchema,
+  [ExampleModelKeys.echoResponse]: exampleEchoResponseSchema,
+  [ExampleModelKeys.pingResponse]: examplePingResponseSchema,
+});

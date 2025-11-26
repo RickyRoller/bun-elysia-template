@@ -1,11 +1,6 @@
 import { Elysia } from 'elysia';
 import { logger } from '../../plugins/logger';
-import type { ExampleEchoBody } from './models.ts';
-import {
-  exampleEchoBody,
-  exampleEchoResponse,
-  examplePingResponse,
-} from './models.ts';
+import { ExampleModelKeys, exampleModel } from './models.ts';
 import { echo } from './service.ts';
 
 /**
@@ -27,17 +22,18 @@ import { echo } from './service.ts';
  */
 export const example = new Elysia({ prefix: '/api/v1/example' })
   .use(logger)
+  .use(exampleModel)
   .post(
     '/post',
-    ({ body }: { body: ExampleEchoBody }) => {
+    ({ body }) => {
       const { message } = body;
       return echo(message);
     },
     {
-      body: exampleEchoBody,
-      response: exampleEchoResponse,
+      body: ExampleModelKeys.echoBody,
+      response: ExampleModelKeys.echoResponse,
     }
   )
   .get('/get', () => ({ ok: true }), {
-    response: examplePingResponse,
+    response: ExampleModelKeys.pingResponse,
   });
