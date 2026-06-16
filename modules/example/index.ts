@@ -1,7 +1,8 @@
-import { Elysia } from 'elysia';
-import { logger } from '../../plugins/logger';
-import { ExampleModelKeys, exampleModel } from './models.ts';
-import { echo } from './service.ts';
+import { Elysia } from "elysia";
+
+import { logger } from "../../plugins/logger";
+import { ExampleModelKeys, exampleModel } from "./models.ts";
+import { echo } from "./service.ts";
 
 /**
  * Example router demonstrating method chaining for strong, incremental type-safety.
@@ -20,11 +21,11 @@ import { echo } from './service.ts';
  *
  * Best practices: https://elysiajs.com/essential/best-practice
  */
-export const example = new Elysia({ prefix: '/api/v1/example' })
+export const example = new Elysia({ prefix: "/api/v1/example" })
   .use(logger)
   .use(exampleModel)
   .post(
-    '/post',
+    "/post",
     ({ body }) => {
       const { message } = body;
       return echo(message);
@@ -34,6 +35,6 @@ export const example = new Elysia({ prefix: '/api/v1/example' })
       response: ExampleModelKeys.echoResponse,
     }
   )
-  .get('/get', () => ({ ok: true }), {
+  .get("/get", () => ({ ok: true }), {
     response: ExampleModelKeys.pingResponse,
   });
